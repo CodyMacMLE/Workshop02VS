@@ -6,7 +6,7 @@
 //
 #include "characterTpl.h"
 #include "character.h"
-#include "weapon.h"
+#include "weapons.h"
 
 #ifndef SENECA_ROGUE_H
 #define SENECA_ROGUE_H

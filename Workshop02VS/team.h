@@ -14,12 +14,14 @@ namespace seneca {
         /// <summary>
         /// An array of pointers to a Character obj that contains all the characters of a team
         /// </summary>
-        Character m_team**;
+        Character** m_team;
         
         /// <summary>
         /// An array of strings of the name for each character in a team
         /// </summary>
-        std::string* m_characterNames;
+        std::string m_teamName;
+
+		int m_teamSize;
         
     public:
         /// <summary>

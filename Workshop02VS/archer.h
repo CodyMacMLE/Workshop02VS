@@ -6,6 +6,7 @@
 //
 #include "characterTpl.h"
 #include "character.h"
+#include "health.h"
 
 #ifndef SENECA_ARCHER_H
 #define SENECA_ARCHER_H
@@ -48,6 +49,11 @@ namespace seneca {
         /// </summary>
         int getDefenseAmnt() const;
         
+		/// <summary>
+		/// dynamically creates a copy of the current instance and returns its address to the client.
+		/// </summary>
+		Character* clone() const;
+
         /// <summary>
         ///     dynamically creates a copy of the current instance and returns its address to the client.
         /// </summary>
