@@ -52,7 +52,7 @@ namespace seneca {
         /// <summary>
         ///     Initializes a new object to the values received as parameters.
         /// </summary>
-        Rogue(const char* name, int healthMax, int baseAttack, int baseDefense;
+        Rogue(const char* name, int healthMax, int baseAttack, int baseDefense);
         
         /// <summary>
         ///     Returns the damage that character can do in an attack
@@ -80,6 +80,6 @@ namespace seneca {
         ///     the special ability, before calling the base class member to update the health.
         /// </summary>
         void takeDamage(int dmg);
-    }
+    };
 }
 #endif /* SENECA_ROGUE_H */

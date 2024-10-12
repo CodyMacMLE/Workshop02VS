@@ -24,7 +24,7 @@ namespace seneca {
 
     template <typename T, typename Ability_t, typename Weapon_t>
     int Barbarian<T, Ability_t, Weapon_t>::getDefenseAmnt() const {
-        return m_baseDefense
+        return m_baseDefense;
     }
 
     template <typename T, typename Ability_t, typename Weapon_t>
@@ -34,7 +34,7 @@ namespace seneca {
 
     template <typename T, typename Ability_t, typename Weapon_t>
     void Barbarian<T, Ability_t, Weapon_t>::attack(Character* enemy) {
-        std::cout << this.getName() << " is attacking " << enemy.getName() << "." << std::endl;
+        std::cout << this->getName() << " is attacking " << enemy->getName() << "." << std::endl;
 		m_ability.useAbility(this);
 		int dmg = this->getAttackAmnt();
 		m_ability.transformDamageDealt(dmg);
@@ -44,9 +44,9 @@ namespace seneca {
 
     template <typename T, typename Ability_t, typename Weapon_t>
     void Barbarian<T, Ability_t, Weapon_t>::takeDamage(int dmg) {
-		std::cout << this.getName() << " is attacked for " << dmg << " damage." << std::endl;
-		std::cout << "\tBarbarian has a defense of " << this.getDefenseAmnt() << ". Reducing damage received." << std::endl;
-		int dmgReceived = dmg - this.getDefenseAmnt();
+		std::cout << this->getName() << " is attacked for " << dmg << " damage." << std::endl;
+		std::cout << "\tBarbarian has a defense of " << this->getDefenseAmnt() << ". Reducing damage received." << std::endl;
+		int dmgReceived = dmg - this->getDefenseAmnt();
 		if (dmgReceived < 0)
 			dmgReceived = 0;
         m_ability.transformDamageReceived(dmgReceived);

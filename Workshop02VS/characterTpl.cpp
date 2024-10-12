@@ -1,10 +1,11 @@
 #include <iostream>
 #include "characterTpl.h"
+#include "character.h"
 
 namespace seneca {
 	template <typename T>
 	CharacterTpl<T>::CharacterTpl(const std::string name, int healthMax) 
-		: Character(name) {
+    : Character(name.c_str()) {
 		m_healthMax = healthMax;
 		m_health = healthMax;
 	}

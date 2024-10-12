@@ -35,11 +35,11 @@ namespace seneca {
 
 	template<typename Weapon_t>
 	void Archer<Weapon_t>::takeDamage(int dmg) {
-		std::cout << this.getName() << " is attacked for " << dmg << " damage." << std::endl;
-		std::cout << "\tArcher has a defense of " << this.getDefenseAmnt() << ". Reducing damage received." << std::endl;
-		int dmgReceived = dmg - this.getDefenseAmnt();
+		std::cout << this->getName() << " is attacked for " << dmg << " damage." << std::endl;
+		std::cout << "\tArcher has a defense of " << this->getDefenseAmnt() << ". Reducing damage received." << std::endl;
+		int dmgReceived = dmg - this->getDefenseAmnt();
 		if (dmgReceived < 0)
 			dmgReceived = 0;
-		this->CharacterTpl<T>::takeDamage(dmgReceived);
+        this->CharacterTpl<seneca::SuperHealth>::takeDamage(dmgReceived);
 	}
 }

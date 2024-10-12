@@ -57,8 +57,8 @@ namespace seneca {
         /// <summary>
         ///     Sets the maximum health and current health to the value of the parameter.
         /// </summary>
-        void setHealthMax(int health) override
-    }
+        void setHealthMax(int health) override;
+    };
 }
 
 #endif /* SENECA_CHARACTERTPL_H */

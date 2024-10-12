@@ -63,6 +63,6 @@ namespace seneca {
         ///     attacks the enemy received as parameter and inflicts damage to it.
         /// </summary>
         void takeDamage(int dmg);
-    }
+    };
 }
 #endif /* SENECA_ARCHER_H */

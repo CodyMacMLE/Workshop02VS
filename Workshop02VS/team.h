@@ -89,6 +89,6 @@ namespace seneca {
         ///     character. If the team is in an empty state, print No team.<endl>
         /// </summary>
         void showMembers() const;
-    }
+    };
 }
 #endif /* SENECA_TEAM_H */

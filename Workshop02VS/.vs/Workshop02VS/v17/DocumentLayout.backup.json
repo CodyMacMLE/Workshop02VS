@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "\\\\Mac\\Home\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|\\\\Mac\\Home\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\tester_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 203,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "tester_1.cpp",
+              "DocumentMoniker": "\\\\Mac\\Home\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\tester_1.cpp",
+              "RelativeDocumentMoniker": "tester_1.cpp",
+              "ToolTip": "\\\\Mac\\Home\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\tester_1.cpp",
+              "RelativeToolTip": "tester_1.cpp",
+              "ViewState": "AgIAACUAAAAAAAAAAAAMwC4AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-12T00:55:47.285Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

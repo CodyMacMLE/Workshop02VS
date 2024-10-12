@@ -1,4 +1,5 @@
 #include "team.h"
+#include "character.h"
 
 namespace seneca {
     /// <summary>
@@ -50,6 +51,7 @@ namespace seneca {
 				}
 			}
         }
+        return *this;
     }
 
     /// <summary>
@@ -76,13 +78,18 @@ namespace seneca {
             // release old obj's pointer
             src.m_team = nullptr;
         }
+        return *this;
     }
 
     /// <summary>
     ///     destructor
     /// </summary>
     Team::~Team() {
-
+        if (m_team != nullptr) {
+            for (auto i = 0; i < m_teamSize; ++i) {
+				delete[] m_team[i];
+            }
+        }
     }
 
     /// <summary>
@@ -91,7 +98,31 @@ namespace seneca {
     ///     function to make a copy of the parameter.
     /// </summary>
     void Team::addMember(const Character* c) {
-
+        int characterExists = 0;
+        // Looping to check if character exists and setting flag
+        for (auto i = 0; i < m_teamSize; ++i) {
+            if (c->getName() == m_team[i]->getName())
+                characterExists = 1;
+        }
+        if (characterExists) {
+            Character* newCharacter = c->clone();
+            if (m_teamSize == 0) {
+                m_team = new Character*[1];
+                m_team[0] = newCharacter;
+            } else {
+                Character** tmpTeam = new Character * [m_teamSize];
+                tmpTeam = m_team; // Is is copying?
+                for (auto i = 0; i < m_teamSize; ++i) {
+                    delete[] m_team[i]; // is this deleting ?
+                }
+                Character** m_team = new Character * [m_teamSize + 1];
+                m_team = tmpTeam; // Is is copying?
+                for (auto i = 0; i < m_teamSize; ++i) {
+                    delete[] tmpTeam[i]; // is this deleting ?
+                }
+                m_teamSize++;
+            }
+        }
     }
 
     /// <summary>
@@ -99,7 +130,30 @@ namespace seneca {
     ///     from the team.
     /// </summary>
     void Team::removeMember(const std::string& c) {
-
+        int characterIndex = -1;
+        // Looping to check if character exists and setting flag
+        for (auto i = 0; i < m_teamSize; ++i) {
+            if (c == m_team[i]->getName())
+                characterIndex = i;
+        }
+        if (characterIndex >= 0) {
+            // delete the character and reposition
+            delete[] m_team[characterIndex];
+            for (auto i = characterIndex; i < m_teamSize - 1; ++i) {
+                *m_team[i] = *m_team[i + 1]; // is dereferencing needed (if not am I moving the pointer and losing the object?
+            }
+            //resize array
+            Character** tmpTeam= new Character* [m_teamSize - 1];
+            tmpTeam = m_team;
+            for (auto i = 0; i < m_teamSize; ++i) {
+                delete[] m_team[i]; // is this deleting ?
+            }
+            Character** m_team= new Character* [m_teamSize - 1];
+            m_team = tmpTeam;
+            for (auto i = 0; i < m_teamSize; ++i) {
+                delete[] tmpTeam[i]; // is this deleting ?
+            }
+        }
     }
 
     /// <summary>
@@ -107,7 +161,7 @@ namespace seneca {
     ///     bounds.
     /// </summary>
     Character* Team::operator[](size_t idx) const {
-
+        return (idx > 0 && idx < m_teamSize) ? m_team[idx] : nullptr;
     }
 
     /// <summary>
@@ -121,6 +175,6 @@ namespace seneca {
     ///     character. If the team is in an empty state, print No team.<endl>
     /// </summary>
     void Team::showMembers() const {
-
+        
     }
 }

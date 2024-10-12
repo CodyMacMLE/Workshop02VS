@@ -78,6 +78,6 @@ namespace seneca {
         ///         single character. If the team is in an empty state, print No guild.<endl>.
         /// </summary>
         void showMembers() const;
-    }
+    };
 }
 #endif /* SENECA_GUILD_H */
