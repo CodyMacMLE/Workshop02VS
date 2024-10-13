@@ -86,7 +86,7 @@ int main(int argc, char** argv)
 		seneca::Barbarian<double, seneca::Bersek,   seneca::Sword> ch_19("Morpheus",      130,  40, 112, {}, {});
 		seneca::Barbarian<double, seneca::Bersek,   seneca::Sword> ch_20("Razor Sharp",   140,  20, 123, {}, {});
 
-		team_1.addMember(&ch_1);
+		team_1.addMember(&ch_1); // Not adding at all at the moment 
 		team_1.addMember(&ch_1); // attempting to add again the same item; should not add
 		team_1.addMember(&ch_2);
 		team_1.addMember(&ch_4);
