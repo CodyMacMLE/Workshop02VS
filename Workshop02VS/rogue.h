@@ -1,5 +1,6 @@
 #ifndef SENECA_ROGUE_H
 #define SENECA_ROGUE_H
+#include <string>
 #include "characterTpl.h"
 #include "health.h"
 #include "abilities.h"
@@ -92,7 +93,8 @@ namespace seneca {
 
     template <typename T, typename FirstAbility_t, typename SecondAbility_t>
     Character* Rogue <T, FirstAbility_t, SecondAbility_t>::clone() const {
-        return new Rogue<T, FirstAbility_t, SecondAbility_t>(*this);
+        Character* cloned = new Rogue<T, FirstAbility_t, SecondAbility_t>(this->getName().c_str(), this->getHealthMax(), m_baseAttack, m_baseDefense);
+        return cloned;
     }
     template <typename T, typename FirstAbility_t, typename SecondAbility_t>
     void Rogue<T, FirstAbility_t, SecondAbility_t>::attack(Character* enemy) {

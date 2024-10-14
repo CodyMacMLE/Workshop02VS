@@ -80,7 +80,7 @@ namespace seneca {
 
     template <typename T, typename Ability_t, typename Weapon_t>
     int Barbarian<T, Ability_t, Weapon_t>::getAttackAmnt() const {
-        return m_baseAttack + (static_cast<double>(m_weapon[0]) / 2) + (static_cast<double>(m_weapon[1]) / 2);
+        return static_cast<int>(m_baseAttack + (static_cast<double>(m_weapon[0]) / 2) + (static_cast<double>(m_weapon[1]) / 2));
     }
 
     template <typename T, typename Ability_t, typename Weapon_t>
@@ -90,7 +90,7 @@ namespace seneca {
 
     template <typename T, typename Ability_t, typename Weapon_t>
     Character* Barbarian<T, Ability_t, Weapon_t>::clone() const {
-        return new Barbarian<T, Ability_t, Weapon_t>(*this);
+        return new Barbarian<T, Ability_t, Weapon_t>(this->getName().c_str(), this->getHealthMax(), m_baseAttack, m_baseDefense, m_weapon[0], m_weapon[1]);
     }
 
     template <typename T, typename Ability_t, typename Weapon_t>

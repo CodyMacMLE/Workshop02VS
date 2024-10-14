@@ -76,7 +76,7 @@ namespace seneca {
 
     template<typename Weapon_t>
     Character* Archer<Weapon_t>::clone() const {
-        return new Archer<Weapon_t>(*this);
+        return new Archer<Weapon_t>(this->getName().c_str(), this->getHealthMax(), m_baseAttack, m_baseDefense, m_weapon);
     }
 
     template<typename Weapon_t>

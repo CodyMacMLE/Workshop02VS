@@ -1,16 +1,24 @@
-//
-//  guild.h
-//  Workshop02
-//
-//  Created by Cody MacDonald on 2024-10-11.
-//
-#include "character.h"
-
 #ifndef SENECA_GUILD_H
 #define SENECA_GUILD_H
+#include <string>
+#include "character.h"
+
 namespace seneca {
     class Guild {
+        /// <summary>
+        /// A collection of characters in the form of an array of pointers
+        /// </summary>
         Character** m_members;
+
+        /// <summary>
+        /// A string with the name of this team
+        /// </summary>
+        std::string m_guildName;
+
+        /// <summary>
+        /// Number of members in the guild
+        /// </summary>
+        int m_guildSize;
     public:
         /// <summary>
         ///     default constructor

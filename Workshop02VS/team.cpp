@@ -1,19 +1,15 @@
+#include <utility>
+#include <string>
 #include "team.h"
 #include "character.h"
 
 namespace seneca {
-    /// <summary>
-    ///     default constructor
-    /// </summary>
     Team::Team() {
         m_team = nullptr;
         m_teamName = '\0';
 		m_teamSize = 0;
     }
 
-    /// <summary>
-    ///     creates a team with the name specified as parameter and no members.
-    /// </summary>
     Team::Team(const char* name) {
 		m_team = nullptr;
         if (name != nullptr)
@@ -23,31 +19,27 @@ namespace seneca {
         m_teamSize = 0;
     }
 
-    /// <summary>
-    ///     copy constructor
-    /// </summary>
     Team::Team(const Team& src) {
         m_team = nullptr;
         *this = src;
     }
 
-    /// <summary>
-    ///     copy assignment
-    /// </summary>
     Team& Team::operator=(const Team& src) {
 		// Self assignment check
         if (this != &src) {
 			// Clean memory
-			delete[] m_team;
-			m_team = nullptr;
+            for (auto i = 0; i < m_teamSize; ++i) {
+                delete m_team[i];
+                m_team[i] = nullptr;
+            }  
 			// Shallow copy the team name & size
 			m_teamName = src.m_teamName;
 			m_teamSize = src.m_teamSize;
 			// Deep copy the team members
-			if (src.m_team != nullptr || src.m_teamSize > 0) {
-				m_team = new Character * [m_teamSize];
-				for (size_t i = 0; i < m_teamSize; i++) {
-					m_team[i] = src.m_team[i]->clone();
+			if (src.m_team != nullptr) {
+				m_team = new Character* [m_teamSize];
+				for (auto i = 0; i < m_teamSize; i++) {
+                    m_team[i] = src.m_team[i]->clone();
 				}
 			}
         }
@@ -58,7 +50,6 @@ namespace seneca {
     ///     move constructor
     /// </summary>
     Team::Team(Team&& src) {
-        m_team = nullptr;
         *this = std::move(src);
     }
 
@@ -69,26 +60,35 @@ namespace seneca {
         // Self assignment check
         if (this != &src) {
             // Clean memory
+            for (auto i = 0; i < m_teamSize; ++i) {
+                delete m_team[i];
+            }   
+
             delete[] m_team;
-            m_team = nullptr;
+
             // Shallow copy all members
             m_teamName = src.m_teamName;
             m_teamSize = src.m_teamSize;
-			m_team = src.m_team; // might need to loop through and assign
-            // release old obj's pointer
+            m_team = src.m_team;
+
+            // Remove access to data to old object and reset
             src.m_team = nullptr;
+            src.m_teamSize = 0;
+            src.m_teamName = "\0";
+
         }
         return *this;
     }
 
     /// <summary>
-    ///     destructor
+    ///     Destructor
     /// </summary>
     Team::~Team() {
         if (m_team != nullptr) {
             for (auto i = 0; i < m_teamSize; ++i) {
-				delete[] m_team[i];
+				delete m_team[i];
             }
+            delete [] m_team;
         }
     }
 
@@ -101,28 +101,25 @@ namespace seneca {
         int characterExists = 0;
         // Looping to check if character exists and setting flag
         for (auto i = 0; i < m_teamSize; ++i) {
-            if (c->getName() == m_team[i]->getName())
+            if (!c->getName().compare(m_team[i]->getName()))
                 characterExists = 1;
         }
-        if (characterExists) {
-            Character* newCharacter = c->clone();
-            if (m_teamSize == 0) {
-                m_team = new Character*[1];
-                m_team[0] = newCharacter;
-            } else {
-                Character** tmpTeam = new Character * [m_teamSize];
-                tmpTeam = m_team; // Is is copying?
-                for (auto i = 0; i < m_teamSize; ++i) {
-                    delete[] m_team[i]; // is this deleting ?
-                }
-                Character** m_team = new Character * [m_teamSize + 1];
-                m_team = tmpTeam; // Is is copying?
-                for (auto i = 0; i < m_teamSize; ++i) {
-                    delete[] tmpTeam[i]; // is this deleting ?
-                }
-                m_teamSize++;
+        // If character does not exist in team -> add member
+        if (!characterExists) {
+            // Move current team to new array
+            Character** newTeam = new Character * [m_teamSize + 1];
+            for (auto i = 0; i < m_teamSize; ++i) {
+                newTeam[i] = m_team[i];
             }
-        }
+            // add new member
+            newTeam[m_teamSize] = c->clone();
+            // delete old pointers
+            delete [] m_team;
+            // assign newTeam
+            m_team = newTeam;
+            // increment team size
+            ++m_teamSize;
+        }    
     }
 
     /// <summary>
@@ -133,26 +130,12 @@ namespace seneca {
         int characterIndex = -1;
         // Looping to check if character exists and setting flag
         for (auto i = 0; i < m_teamSize; ++i) {
-            if (c == m_team[i]->getName())
+            if (!c.compare(m_team[i]->getName()))
                 characterIndex = i;
         }
+        // If character does not exist in team -> add member
         if (characterIndex >= 0) {
-            // delete the character and reposition
-            delete[] m_team[characterIndex];
-            for (auto i = characterIndex; i < m_teamSize - 1; ++i) {
-                *m_team[i] = *m_team[i + 1]; // is dereferencing needed (if not am I moving the pointer and losing the object?
-            }
-            //resize array
-            Character** tmpTeam= new Character* [m_teamSize - 1];
-            tmpTeam = m_team;
-            for (auto i = 0; i < m_teamSize; ++i) {
-                delete[] m_team[i]; // is this deleting ?
-            }
-            Character** m_team= new Character* [m_teamSize - 1];
-            m_team = tmpTeam;
-            for (auto i = 0; i < m_teamSize; ++i) {
-                delete[] tmpTeam[i]; // is this deleting ?
-            }
+            
         }
     }
 
@@ -175,6 +158,14 @@ namespace seneca {
     ///     character. If the team is in an empty state, print No team.<endl>
     /// </summary>
     void Team::showMembers() const {
-        
+        if (m_teamSize > 0) {
+            std::cout << "[Team] " << m_teamName << std::endl;
+            for (auto i = 0; i < m_teamSize; ++i) {
+                std::cout << i + 1 << ". " << *m_team[i] << std::endl;
+            }
+        }
+        else {
+            std::cout << "No team." << std::endl;
+        }
     }
 }

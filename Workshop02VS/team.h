@@ -1,14 +1,8 @@
-//
-//  team.h
-//  Workshop02
-//
-//  Created by Cody MacDonald on 2024-10-11.
-//
+#ifndef SENECA_TEAM_H
+#define SENECA_TEAM_H
 #include <string>
 #include "character.h"
 
-#ifndef SENECA_TEAM_H
-#define SENECA_TEAM_H
 namespace seneca {
     class Team {
         /// <summary>
@@ -17,10 +11,13 @@ namespace seneca {
         Character** m_team;
         
         /// <summary>
-        /// An array of strings of the name for each character in a team
+        /// An array of char containing the name of the team
         /// </summary>
         std::string m_teamName;
 
+		/// <summary>
+		/// The current size of the team
+		/// </summary>
 		int m_teamSize;
         
     public:
