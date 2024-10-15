@@ -200,7 +200,7 @@ int main(int argc, char** argv)
 		copy.showMembers();
 		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 	}
-
+/*
 	{
 		// Master Chief wins in 10 rounds
 		std::cout << "T10: Epic battle between Master Chief and Mercy Less\n";
@@ -244,4 +244,5 @@ int main(int argc, char** argv)
 		}
 		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 	}
+	*/
 }

@@ -6,12 +6,12 @@ namespace seneca {
     /// <summary>
     ///     default constructor
     /// </summary>
-    Guild::Guild() : m_guildName("\0"), m_members(nullptr), m_guildSize(0) {}
+    Guild::Guild() : m_members(nullptr), m_guildName("\0"), m_guildSize(0) {}
     
     /// <summary>
     ///     creates a guild with the name specified as parameter and no members.
     /// </summary>
-    Guild::Guild(const char* name) : m_guildName(name), m_members(nullptr), m_guildSize(0) {}
+    Guild::Guild(const char* name) : m_members(nullptr), m_guildName(name), m_guildSize(0) {}
     
     /// <summary>
     ///     copy constructor
@@ -28,10 +28,7 @@ namespace seneca {
         // Self assignment check
         if (this != &src) {
             // Clean memory
-            for (auto i = 0; i < m_guildSize; ++i) {
-                delete m_members[i];
-                m_members[i] = nullptr;
-            }
+            delete [] m_members;
             // Shallow copy the team name & size
             m_guildName = src.m_guildName;
             m_guildSize = src.m_guildSize;
@@ -39,7 +36,7 @@ namespace seneca {
             if (src.m_members != nullptr) {
                 m_members = new Character * [m_guildSize];
                 for (auto i = 0; i < m_guildSize; i++) {
-                    m_members[i] = src.m_members[i]->clone();
+                    m_members[i] = src.m_members[i];
                 }
             }
         }
@@ -50,6 +47,7 @@ namespace seneca {
     ///     move constructor
     /// </summary>
     Guild::Guild(Guild&& src) {
+        m_members = nullptr;
         *this = std::move(src);
     }
     
@@ -80,7 +78,8 @@ namespace seneca {
     ///     destructor
     /// </summary>
     Guild::~Guild() {
-        delete[] m_members;
+       if (m_guildSize > 0)
+        delete [] m_members;
     }
     
     /// <summary>
@@ -97,19 +96,25 @@ namespace seneca {
         }
         // If character does not exist in team -> add member
         if (!characterExists) {
-            // Move current team to new array
+            // Creating dynamic array of pointers for characters in guild
             Character** newTeam = new Character * [m_guildSize + 1];
+
+            // Assign each index a character pointer to the ++array
             for (auto i = 0; i < m_guildSize; ++i) {
                 newTeam[i] = m_members[i];
             }
-            // add new member
+
+            // add new member and increase max health to last index
             c->setHealthMax(c->getHealthMax() + 300);
             newTeam[m_guildSize] = c;
-            // delete old pointers
+
+            // delete old array
             delete[] m_members;
-            // assign newTeam
+
+            // Point to the new array
             m_members = newTeam;
-            // increment team size
+
+            // increment guild size
             ++m_guildSize;
         }
     }
@@ -121,25 +126,40 @@ namespace seneca {
     /// </summary>
     void Guild::removeMember(const std::string& c) {
         int characterIndex = -1;
+
         // Looping to check if character exists and setting flag
         for (auto i = 0; i < m_guildSize; ++i) {
             if (!c.compare(m_members[i]->getName())) {
                 // Putting health back to normal stats
                 m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300);
                 characterIndex = i;
+                break;
             }
         }
         // If character exists remove from array
-        if (m_guildSize == 1) {
-            delete[] m_members;
+        if (characterIndex == 0 && m_guildSize == 1) {
+            m_members = nullptr;
             m_guildSize--;
         } else if (characterIndex >= 0) {
-            for (auto i = characterIndex; i < m_guildSize; i++) {
-                m_members[i] = m_members[i + 1];
+            
+            // Creating new Character --array
+            Character** newMembers = new Character * [m_guildSize - 1];
+
+            int j = 0;
+            for (int i = 0; i < m_guildSize; i++) {
+                if (i != characterIndex) {
+                    newMembers[j] = m_members[i];
+                    j++;
+                }
             }
-            Character** newMembers = new Character* [m_guildSize - 1];
-            newMembers = m_members;
+
+            // delete old array
+            delete[] m_members;
+
+            // Point to the new array
             m_members = newMembers;
+
+            // decrement guild size
             m_guildSize--;
         }
     }
@@ -149,7 +169,7 @@ namespace seneca {
     ///     bounds.
     /// </summary>
     Character* Guild::operator[](size_t idx) const {
-        return nullptr;
+        return (idx > 0 && idx < static_cast<size_t>(m_guildSize)) ? m_members[idx] : nullptr;
     }
     
     /// <summary>
@@ -163,10 +183,10 @@ namespace seneca {
     ///         single character. If the team is in an empty state, print No guild.<endl>.
     /// </summary>
     void Guild::showMembers() const {
-        if (m_guildSize > 0) {
+        if (m_guildSize > 0 || m_guildName != "\0") {
             std::cout << "[Guild] " << m_guildName << std::endl;
             for (auto i = 0; i < m_guildSize; ++i) {
-                std::cout << i + 1 << ". " << *m_members[i] << std::endl;
+                std::cout << "    " << i + 1 << ": " << *m_members[i] << std::endl;
             }
         } else {
             std::cout << "No guild." << std::endl;

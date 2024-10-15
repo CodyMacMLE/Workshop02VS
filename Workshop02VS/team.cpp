@@ -4,12 +4,19 @@
 #include "character.h"
 
 namespace seneca {
+
+    /// <summary>
+    ///     Default constructor
+    /// </summary>
     Team::Team() {
         m_team = nullptr;
         m_teamName = '\0';
 		m_teamSize = 0;
     }
 
+    /// <summary>
+    ///     custom constructor
+    /// </summary>
     Team::Team(const char* name) {
 		m_team = nullptr;
         if (name != nullptr)
@@ -19,22 +26,30 @@ namespace seneca {
         m_teamSize = 0;
     }
 
-    Team::Team(const Team& src) {
-        m_team = nullptr;
+    /// <summary>
+    ///     copy constructor
+    /// </summary>
+    Team::Team(const Team& src) : Team() {
         *this = src;
     }
 
+    /// <summary>
+    ///     copy assignment
+    /// </summary>
     Team& Team::operator=(const Team& src) {
 		// Self assignment check
         if (this != &src) {
+
 			// Clean memory
             for (auto i = 0; i < m_teamSize; ++i) {
                 delete m_team[i];
-                m_team[i] = nullptr;
-            }  
+            }
+            delete[] m_team;
+
 			// Shallow copy the team name & size
 			m_teamName = src.m_teamName;
 			m_teamSize = src.m_teamSize;
+
 			// Deep copy the team members
 			if (src.m_team != nullptr) {
 				m_team = new Character* [m_teamSize];
@@ -50,6 +65,7 @@ namespace seneca {
     ///     move constructor
     /// </summary>
     Team::Team(Team&& src) {
+        m_team = nullptr;
         *this = std::move(src);
     }
 
@@ -60,10 +76,6 @@ namespace seneca {
         // Self assignment check
         if (this != &src) {
             // Clean memory
-            for (auto i = 0; i < m_teamSize; ++i) {
-                delete m_team[i];
-            }   
-
             delete[] m_team;
 
             // Shallow copy all members
@@ -84,12 +96,10 @@ namespace seneca {
     ///     Destructor
     /// </summary>
     Team::~Team() {
-        if (m_team != nullptr) {
-            for (auto i = 0; i < m_teamSize; ++i) {
-				delete m_team[i];
-            }
-            delete [] m_team;
+        for (auto i = 0; i < m_teamSize; ++i) {
+			delete m_team[i];
         }
+        delete [] m_team;
     }
 
     /// <summary>
@@ -144,7 +154,7 @@ namespace seneca {
     ///     bounds.
     /// </summary>
     Character* Team::operator[](size_t idx) const {
-        return (idx > 0 && idx < m_teamSize) ? m_team[idx] : nullptr;
+        return (idx > 0 && idx < static_cast<size_t>(m_teamSize)) ? m_team[idx] : nullptr;
     }
 
     /// <summary>
@@ -161,7 +171,7 @@ namespace seneca {
         if (m_teamSize > 0) {
             std::cout << "[Team] " << m_teamName << std::endl;
             for (auto i = 0; i < m_teamSize; ++i) {
-                std::cout << i + 1 << ". " << *m_team[i] << std::endl;
+                std::cout << "    " << i + 1 << ": " << *m_team[i] << std::endl;
             }
         }
         else {

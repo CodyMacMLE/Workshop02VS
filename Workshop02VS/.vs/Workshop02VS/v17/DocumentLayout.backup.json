@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\team.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|solutionrelative:team.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\tester_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|solutionrelative:tester_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\characterTpl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|solutionrelative:characterTpl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\sample_output.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|solutionrelative:sample_output.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\guild.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2D6F8838-EBE7-4811-B608-BCF262EC4879}|Workshop02VS.vcxproj|solutionrelative:guild.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,47 +18,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 203,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "sample_output.txt",
-              "DocumentMoniker": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\sample_output.txt",
-              "RelativeDocumentMoniker": "sample_output.txt",
-              "ToolTip": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\sample_output.txt",
-              "RelativeToolTip": "sample_output.txt",
-              "ViewState": "AgIAAN0BAAAAAAAAAAAAAHsAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-10-13T18:07:30.077Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "tester_1.cpp",
               "DocumentMoniker": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\tester_1.cpp",
               "RelativeDocumentMoniker": "tester_1.cpp",
               "ToolTip": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\tester_1.cpp",
               "RelativeToolTip": "tester_1.cpp",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAQwMUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAQwPgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-10-13T05:26:53.704Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "characterTpl.h",
-              "DocumentMoniker": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\characterTpl.h",
-              "RelativeDocumentMoniker": "characterTpl.h",
-              "ToolTip": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\characterTpl.h",
-              "RelativeToolTip": "characterTpl.h",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEYAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-14T01:09:16.796Z",
               "EditorCaption": ""
             },
             {
@@ -79,15 +44,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "guild.cpp",
-              "DocumentMoniker": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\guild.cpp",
-              "RelativeDocumentMoniker": "guild.cpp",
-              "ToolTip": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\guild.cpp",
-              "RelativeToolTip": "guild.cpp",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAQwEgAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "team.cpp",
+              "DocumentMoniker": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\team.cpp",
+              "RelativeDocumentMoniker": "team.cpp",
+              "ToolTip": "C:\\Users\\linal\\OneDrive\\Documents\\GitHub\\Workshop02VS\\Workshop02VS\\team.cpp",
+              "RelativeToolTip": "team.cpp",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-13T18:08:03.032Z",
+              "WhenOpened": "2024-10-14T01:20:03.018Z",
               "EditorCaption": ""
             }
           ]

@@ -68,7 +68,7 @@ namespace seneca {
         m_health -= dmg;
         if (m_health < 0) {
             m_health = 0;
-            std::cout << "\t" << getName() << " has been defeated!" << std::endl;
+            std::cout << "    " << getName() << " has been defeated!" << std::endl;
         }
         else {
             std::cout << getName() << " took " << dmg << " damage, "
